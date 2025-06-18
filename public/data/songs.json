@@ -1,0 +1,62 @@
+[
+  {
+    "artist": "Bob Marley & The Wailers",
+    "title": "Three Little Birds",
+    "genre": "Reggae",
+    "youtubeId": "zaGUr6wS_U"
+  },
+  {
+    "artist": "Pharrell Williams",
+    "title": "Happy",
+    "genre": "Pop",
+    "youtubeId": "ZbZSe6N_BXs"
+  },
+  {
+    "artist": "Katrina & The Waves",
+    "title": "Walking on Sunshine",
+    "genre": "Pop Rock",
+    "youtubeId": "iPUmE-tne5U"
+  },
+  {
+    "artist": "Bill Withers",
+    "title": "Lovely Day",
+    "genre": "Soul",
+    "youtubeId": "bEeaS6fuUoA"
+  },
+  {
+    "artist": "Louis Armstrong",
+    "title": "What a Wonderful World",
+    "genre": "Jazz",
+    "youtubeId": "VjflkXgJd-o"
+  },
+  {
+    "artist": "The Beatles",
+    "title": "Here Comes The Sun",
+    "genre": "Rock",
+    "youtubeId": "KQetemT1sWc"
+  },
+  {
+    "artist": "Israel Kamakawiwoʻole",
+    "title": "Somewhere Over the Rainbow",
+    "genre": "Ukulele",
+    "youtubeId": "V1bFr2SWP1I"
+  },
+  {
+    "artist": "U2",
+    "title": "Beautiful Day",
+    "genre": "Rock",
+    "youtubeId": "co6WMzDOh1o"
+  },
+  {
+    "artist": "Bobby McFerrin",
+    "title": "Don't Worry, Be Happy",
+    "genre": "A Cappella",
+    "youtubeId": "d-diB65scQU"
+  },
+  {
+    "artist": "Florence + The Machine",
+    "title": "Dog Days Are Over",
+    "genre": "Indie Rock",
+    "youtubeId": "iWOA-GfASTM"
+  }
+]

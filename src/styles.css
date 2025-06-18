@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* fonts */
+  --font-sans: "Poppins", sans-serif;
+
+  /* colors */
+  --color-brand-dark: #1a202c;
+  --color-brand-light: #f7fafc;
+  --color-brand-primary: #2b6cb0;
+  --color-brand-secondary: #7c3aed;
+  --color-brand-accent: #db2777;
+}
+
+body {
+  @apply text-brand-dark;
+  background-color: teal;
+}
+
+/* --- CUSTOM SWIPER STYLES --- */
+
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 2rem;
+}
+
+swiper-container::swiper-button-prev {
+  top: 20%;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: #f7fafc; /* brand-light */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+  width: 40px;
+  height: 40px;
+  border-radius: 99%;
+  transition: background-color 0.3s ease;
+}
+
+/* Make the buttons slightly larger on hover for a nice effect */
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Style the pagination dots */
+swiper-container::part(pagination) {
+  bottom: 4px !important;
+}
+
+/* Style the individual pagination dots */
+swiper-container::part(bullet) {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style the active pagination dot */
+swiper-container::part(bullet-active) {
+  /* Use our brand's accent color for the active dot */
+  background-color: #db2777; /* brand-accent */
+}
