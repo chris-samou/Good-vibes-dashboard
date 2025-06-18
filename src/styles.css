@@ -20,13 +20,17 @@ html {
 }
 
 body {
-  @apply text-slate-200;
-  /* bg-gradient-to-bl from-cyan-200 to-emerald-600 */
-  background: linear-gradient(135deg, #0b132b, #1c2541, #3a5f7d);
-  background-size: 400% 400%;
-  animation: gradient 20s ease infinite;
+  @apply text-slate-200 bg-brand-dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #0b132b, #1c2541, #3a5f7d);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+  }
 }
 
 @keyframes gradient {

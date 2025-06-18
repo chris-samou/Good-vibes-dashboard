@@ -1,14 +1,14 @@
 <div class="max-w-2xl mx-auto">
   <form
     (ngSubmit)="search()"
-    class="relative flex w-full p-2 bg-black/10 backdrop-blur-sm rounded-full shadow-lg"
+    class="relative flex w-full bg-black/10 backdrop-blur-sm rounded-full shadow-lg"
   >
     <input
       type="text"
       [(ngModel)]="city"
       name="city"
       placeholder="Find your vibe... e.g., New York, Tokyo, Paris"
-      class="flex-grow p-3 pl-5 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+      class="flex-grow p-3 pl-1 bg-transparent text-white placeholder-gray-300 focus:outline-none"
       required
     />
     <button
