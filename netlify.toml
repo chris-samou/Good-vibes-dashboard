@@ -1,0 +1,15 @@
+# netlify.toml
+
+# This is the main build configuration.
+# It tells Netlify how to build the site.
+[build]
+  command = "ng build"
+  publish = "dist/good-vibes-dashboard/browser/"
+  
+# This is the crucial redirect rule for Angular SPAs.
+# It redirects all page requests to the main index.html file,
+# allowing the Angular router to take over.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
