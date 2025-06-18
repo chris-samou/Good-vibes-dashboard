@@ -63,6 +63,7 @@ swiper-slide {
 swiper-container::part(button-prev):hover,
 swiper-container::part(button-next):hover {
   background-color: rgba(0, 0, 0, 0.5);
+  scale: 1.1;
 }
 
 swiper-container::part(pagination) {
