@@ -1,5 +1,5 @@
-<div class="min-h-screen w-full">
-  <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+<div class="min-h-screen w-full flex flex-col">
+  <div class="max-w-8xl mx-auto p-4 sm:p-6 lg:p-8 h-full flex-1">
     <header class="text-center my-12">
       <h1
         class="main-headline text-5xl sm:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-300"
@@ -14,20 +14,76 @@
     <main>
       <section class="mb-12">
         <app-location-selector
+          [initialCity]="currentCity"
           (locationSelected)="onLocationSelected($event)"
-        ></app-location-selector>
+        >
+        </app-location-selector>
       </section>
 
-      <section class="dashboard-grid grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Weather Card Wrapper -->
-        <div class="weather-news-card opacity-0">
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        <div class="dashboard-card opacity-0 md:col-span-2 lg:col-span-12">
+          <app-info-card
+            title="Photo of the Day"
+            icon="📷"
+            [isLoading]="photoLoading()"
+          >
+            @if(photo(); as p) {
+            <div
+              class="w-full h-full rounded-lg relative overflow-hidden group min-h-[400px]"
+            >
+              <img
+                [src]="p.urls.regular"
+                class="absolute w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out"
+              />
+              <div
+                class="absolute bottom-0 left-0 p-2 bg-black/50 text-white text-xs"
+              >
+                Photo by
+                <a
+                  [href]="p.user.links.html"
+                  target="_blank"
+                  class="underline hover:text-brand-accent"
+                  >{{p.user.name}}</a
+                >
+                on Unsplash
+              </div>
+            </div>
+            } @else if(!photoLoading()){
+            <div class="flex items-center justify-center h-full text-gray-300">
+              No photo found for this location.
+            </div>
+            }
+          </app-info-card>
+        </div>
+
+        <div class="dashboard-card opacity-0 md:col-span-2 lg:col-span-8">
+          <app-info-card
+            title="Mindful Moment"
+            icon="🧘"
+            [isLoading]="quoteLoading()"
+          >
+            @if(quote(); as q) {
+            <div class="flex flex-col h-full justify-center text-center">
+              <p class="text-xl italic">"{{q.text}}"</p>
+              <p class="mt-4 font-bold">- {{q.author}}</p>
+              <button
+                (click)="loadQuote(true)"
+                class="mt-4 text-sm text-gray-300 hover:text-white transition"
+              >
+                New Quote
+              </button>
+            </div>
+            }
+          </app-info-card>
+        </div>
+
+        <div class="dashboard-card opacity-0 md:col-span-2 lg:col-span-4">
           <app-info-card
             title="Today's Weather"
             icon="☁️"
             [isLoading]="weatherLoading()"
             [error]="weatherError()"
           >
-            <!-- Weather content remains the same -->
             @if(weather(); as w) {
             <div class="flex items-center justify-between">
               <div class="space-y-1">
@@ -48,15 +104,14 @@
               <img
                 [src]="'https://openweathermap.org/img/wn/' + w.weather[0].icon + '@4x.png'"
                 alt="Weather icon"
-                class="w-32 h-32"
+                class="w-24 h-24"
               />
             </div>
             }
           </app-info-card>
         </div>
 
-        <!-- News Card Wrapper with Swiper Carousel -->
-        <div class="weather-news-card opacity-0">
+        <div class="dashboard-card opacity-0 md:col-span-2 lg:col-span-4">
           <app-info-card
             title="Good News"
             icon="📰"
@@ -64,52 +119,52 @@
             [error]="newsError()"
           >
             @if (isNewsReady() && news() && news()!.length > 0) {
-            <!-- Swiper.js Web Component -->
             <swiper-container
               slides-per-view="1"
               speed="500"
               loop="true"
-              navigation="true"
               pagination="true"
+              pagination-clickable="true"
               class="h-full"
             >
               @for(article of news(); track article.title) {
-              <swiper-slide class="p-1">
-                <div class="flex flex-col h-full">
-                  <img
-                    [src]="article.urlToImage"
-                    onError="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600'"
-                    alt="News image"
-                    class="w-full h-40 object-cover rounded-lg mb-4"
-                  />
-                  <a
-                    [href]="article.url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:text-pink-300 transition block"
-                  >
-                    <span class="font-bold text-lg leading-tight"
-                      >{{ article.title }}</span
+
+              <swiper-slide class="flex justify-center items-center p-1">
+                <div class="w-4/5">
+                  <div class="flex flex-col h-full">
+                    <img
+                      [src]="article.urlToImage"
+                      onError="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600'"
+                      alt="News image"
+                      class="w-full h-40 object-cover rounded-lg mb-4"
+                    />
+                    <a
+                      [href]="article.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="hover:text-pink-300 transition block"
                     >
-                    <span class="text-xs text-gray-300 block mt-2"
-                      >Source: {{ article.source.name }}</span
-                    >
-                  </a>
+                      <span class="font-bold text-lg leading-tight"
+                        >{{ article.title }}</span
+                      >
+                      <span class="text-xs text-gray-300 block mt-2"
+                        >Source: {{ article.source.name }}</span
+                      >
+                    </a>
+                  </div>
                 </div>
               </swiper-slide>
               }
             </swiper-container>
             } @else if (!newsLoading()) {
             <p class="text-center text-gray-300">
-              No good news found. The world is probably just having a quiet,
-              peaceful day here!
+              No good news found. Have a peaceful day!
             </p>
             }
           </app-info-card>
         </div>
 
-        <!-- Music Card Wrapper with Embedded Player -->
-        <div class="music-card">
+        <div class="music-card md:col-span-2 lg:col-span-8">
           <app-info-card
             title="Song of the Day"
             icon="🎵"
@@ -119,14 +174,14 @@
             <div class="flex flex-col h-full justify-between">
               <div>
                 <div
-                  class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 shadow-lg"
+                  class="md:aspect-[calc(4*3+1)/3] rounded-lg overflow-hidden mb-4 shadow-lg"
                 >
-                  <!-- The pipe will now be found correctly -->
                   <iframe
                     [src]="('https://www.youtube.com/embed/' + s.youtubeId) | safeUrl"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
+                    class="w-full h-full"
                   ></iframe>
                 </div>
                 <p class="text-2xl font-bold leading-tight">"{{ s.title }}"</p>
@@ -147,4 +202,5 @@
       </section>
     </main>
   </div>
+  <app-footer></app-footer>
 </div>
