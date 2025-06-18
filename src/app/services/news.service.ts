@@ -8,7 +8,7 @@ import { NewsApiResponse, NewsArticle } from '../models/news.model';
 export class NewsService {
   private http = inject(HttpClient);
   // --- CHANGE: This is now the path to YOUR Netlify function ---
-  private readonly apiUrl = '/netlify/functions/get-news';
+  private readonly apiUrl = '/api/get-news';
 
   getGoodNews(city: string): Observable<NewsArticle[] | null> {
     // We now pass the city as a query parameter to our own function
