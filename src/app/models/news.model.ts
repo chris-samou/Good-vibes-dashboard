@@ -9,5 +9,7 @@ export interface NewsArticle {
 }
 
 export interface NewsApiResponse {
-  articles: NewsArticle[];
+  status?: string;
+  articles?: NewsArticle[];
+  message?: string;
 }
