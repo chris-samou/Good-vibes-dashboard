@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  @apply text-slate-200 bg-brand-dark;
+  @apply text-slate-200 bg-brand-dark font-sans m-0 overscroll-none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

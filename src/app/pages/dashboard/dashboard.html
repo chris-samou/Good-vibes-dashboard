@@ -32,6 +32,8 @@
               class="w-full h-full rounded-lg relative overflow-hidden group min-h-[400px]"
             >
               <img
+                loading="lazy"
+                [alt]="'Unsplash photo'"
                 [src]="p.urls.regular"
                 class="absolute w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out"
               />
@@ -104,6 +106,7 @@
               <img
                 [src]="'https://openweathermap.org/img/wn/' + w.weather[0].icon + '@4x.png'"
                 alt="Weather icon"
+                loading="lazy"
                 class="w-24 h-24"
               />
             </div>
@@ -182,6 +185,7 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
                     class="w-full h-full"
+                    loading="lazy"
                   ></iframe>
                 </div>
                 <p class="text-2xl font-bold leading-tight">"{{ s.title }}"</p>
