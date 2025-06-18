@@ -6,4 +6,7 @@ export const environment = {
   newsApi: {
     apiKey: '276f12ef3c9f460da75e560f5800e258',
   },
+  unsplash: {
+    apiKey: '5JiJy98yJbRKpIeFh846Jg8WgsWnP-xYqhRgsDHWcXQ',
+  },
 };

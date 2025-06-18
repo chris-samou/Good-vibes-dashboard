@@ -10,11 +10,35 @@
   --color-brand-primary: #2b6cb0;
   --color-brand-secondary: #7c3aed;
   --color-brand-accent: #db2777;
+
+  --spacing-8xl: 96rem; /* 1536px */
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply text-brand-dark;
-  background-color: teal;
+  @apply text-slate-200;
+  /* bg-gradient-to-bl from-cyan-200 to-emerald-600 */
+  background: linear-gradient(135deg, #0b132b, #1c2541, #3a5f7d);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --- CUSTOM SWIPER STYLES --- */
@@ -32,32 +56,15 @@ swiper-slide {
   padding-bottom: 2rem;
 }
 
-swiper-container::swiper-button-prev {
-  top: 20%;
-}
-
-swiper-container::part(button-prev),
-swiper-container::part(button-next) {
-  color: #f7fafc; /* brand-light */
-  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
-  width: 40px;
-  height: 40px;
-  border-radius: 99%;
-  transition: background-color 0.3s ease;
-}
-
-/* Make the buttons slightly larger on hover for a nice effect */
 swiper-container::part(button-prev):hover,
 swiper-container::part(button-next):hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Style the pagination dots */
 swiper-container::part(pagination) {
-  bottom: 4px !important;
+  bottom: 0 !important;
 }
 
-/* Style the individual pagination dots */
 swiper-container::part(bullet) {
   background-color: rgba(255, 255, 255, 0.5);
   width: 10px;
@@ -65,8 +72,6 @@ swiper-container::part(bullet) {
   transition: background-color 0.3s ease;
 }
 
-/* Style the active pagination dot */
 swiper-container::part(bullet-active) {
-  /* Use our brand's accent color for the active dot */
-  background-color: #db2777; /* brand-accent */
+  background-color: var(--color-brand-accent);
 }
