@@ -9,7 +9,6 @@ export class SafeUrlPipe implements PipeTransform {
   private sanitizer = inject(DomSanitizer);
 
   transform(url: string): SafeResourceUrl {
-    // This tells Angular to trust this URL for resource embedding.
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

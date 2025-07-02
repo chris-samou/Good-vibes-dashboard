@@ -53,7 +53,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   photo = signal<Photo | null>(null);
   quote = signal<Quote | null>(null);
 
-  // Loading and state signals
   weatherLoading = signal(true);
   newsLoading = signal(true);
   songLoading = signal(true);
@@ -91,7 +90,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   onLocationSelected(city: string): void {
-    // Fade out old cards before loading new data
     const tl = gsap.timeline();
     tl.to('.dashboard-card', {
       duration: 0.3,
@@ -104,7 +102,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   handleDataLoad(city: string): void {
-    // Reset states
     this.isNewsReady.set(false);
     this.weatherLoading.set(true);
     this.newsLoading.set(true);
@@ -113,7 +110,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.newsError.set(false);
     this.dataLoadCounter = 0;
 
-    // The three main data fetches that depend on the city
     this.weatherService.getWeather(city).subscribe((data) => {
       this.weather.set(data);
       this.weatherLoading.set(false);
@@ -131,7 +127,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.photoService.getPhotoForCity(city).subscribe((data) => {
       this.photo.set(data);
       this.photoLoading.set(false);
-      // No error signal for photo, it will just not show
       this.checkAndAnimateCards(city);
     });
   }
