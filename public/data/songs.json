@@ -58,5 +58,65 @@
     "title": "Dog Days Are Over",
     "genre": "Indie Rock",
     "youtubeId": "iWOA-GfASTM"
+  },
+  {
+    "artist": "Justin Timberlake",
+    "title": "Can't Stop the Feeling!",
+    "genre": "Pop",
+    "youtubeId": "ru0K8uYEZWw"
+  },
+  {
+    "artist": "Dua Lipa",
+    "title": "Levitating",
+    "genre": "Pop",
+    "youtubeId": "TUVcZfQe-Kw"
+  },
+  {
+    "artist": "Bruno Mars",
+    "title": "24K Magic",
+    "genre": "Funk",
+    "youtubeId": "UqyT8IEBkvY"
+  },
+  {
+    "artist": "Mark Ronson ft. Amy Winehouse",
+    "title": "Valerie",
+    "genre": "Soul",
+    "youtubeId": "4HLY1NTe04M"
+  },
+  {
+    "artist": "Maroon 5",
+    "title": "Sugar",
+    "genre": "Pop",
+    "youtubeId": "09R8_2nJtjg"
+  },
+  {
+    "artist": "Pharrell Williams",
+    "title": "Come Get It Bae",
+    "genre": "Pop",
+    "youtubeId": "9fGlrLPMnMM"
+  },
+  {
+    "artist": "Jason Mraz",
+    "title": "I'm Yours",
+    "genre": "Pop",
+    "youtubeId": "EkHTsc9PU2A"
+  },
+  {
+    "artist": "Shakira",
+    "title": "Try Everything",
+    "genre": "Pop",
+    "youtubeId": "lnP3qMJ1mLs"
+  },
+  {
+    "artist": "Sister Sledge",
+    "title": "We Are Family",
+    "genre": "Disco",
+    "youtubeId": "rOyG1Ez21h0"
+  },
+  {
+    "artist": "Cyndi Lauper",
+    "title": "Girls Just Want to Have Fun",
+    "genre": "Pop",
+    "youtubeId": "PIb6AZdTr-A"
   }
 ]

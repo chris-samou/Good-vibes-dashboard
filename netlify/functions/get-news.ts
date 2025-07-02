@@ -3,14 +3,12 @@ import fetch from 'node-fetch';
 export default async (req: Request) => {
   const url = new URL(req.url);
   const city = url.searchParams.get('city');
+  if (!city) return new Response('City parameter is required', { status: 400 });
 
-  if (!city) {
-    return new Response('City parameter is required', { status: 400 });
-  }
+  const apiKey = process.env.GNEWS_API_KEY;
+  if (!apiKey) return new Response('API key not configured', { status: 500 });
 
-  const apiKey = process.env.NEWS_API_KEY;
-
-  const goodNewsKeywords = [
+  const positiveKeywords = [
     'breakthrough',
     'uplifting',
     'inspiring',
@@ -29,45 +27,24 @@ export default async (req: Request) => {
     'music festival',
   ].join(' OR ');
 
-  const badNewsKeywords = [
-    'death',
-    'died',
-    'killed',
-    'murder',
-    'crime',
-    'war',
-    'attack',
-    'disaster',
-    'crash',
-    'explosion',
-    'protest',
-    'riot',
-    'scandal',
-    'corruption',
-    'disease',
-    'pandemic',
-    'outbreak',
-    'crisis',
-    'symptoms',
-    'warning',
-    'slump',
-    'cuts',
-    'charges',
-    'arrested',
-    'accused',
-  ].join(' OR ');
+  const query = `"${city}" AND (${positiveKeywords})`;
 
-  const query = encodeURIComponent(
-    `"${city}" AND (${goodNewsKeywords}) NOT (${badNewsKeywords})`
-  );
-
-  const newsApiUrl = `https://newsapi.org/v2/everything?q=${query}&language=en&pageSize=10&sortBy=relevancy&apiKey=${apiKey}`;
+  const gnewsUrl = `https://gnews.io/api/v4/search?q=${encodeURIComponent(
+    query
+  )}&lang=en&max=10&token=${apiKey}`;
 
   try {
-    const response = await fetch(newsApiUrl);
+    const response = await fetch(gnewsUrl);
+    if (!response.ok)
+      throw new Error(`GNews API error: ${response.statusText}`);
     const data = await response.json();
 
-    // The function will return the data from NewsAPI back to our Angular app.
+    const badWordsRegex =
+      /death|funeral|coffin|cemetery|crime|war|attack|disaster|scandal/i;
+    data.articles = (data.articles || []).filter(
+      (article) => !badWordsRegex.test(article.title)
+    );
+
     return new Response(JSON.stringify(data), {
       headers: { 'Content-Type': 'application/json' },
     });
@@ -79,7 +56,4 @@ export default async (req: Request) => {
   }
 };
 
-// Add a config to tell Netlify to handle this as a function
-export const config = {
-  path: '/api/get-news', // This makes the function available at yoursite.com/api/get-news
-};
+export const config = { path: '/api/get-news' };
