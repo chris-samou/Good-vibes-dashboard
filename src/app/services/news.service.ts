@@ -17,10 +17,13 @@ export class NewsService {
           console.error('News API error:', response.message);
           return [];
         }
+
         return (response.articles || []).filter(
           (article) =>
-            article.urlToImage &&
-            !/death|funeral|coffin|cemetery/i.test(article.title)
+            article.image &&
+            !/death|funeral|coffin|cemetery|crime|war|attack|disaster|scandal/i.test(
+              article.title
+            )
         );
       }),
       catchError((error) => {

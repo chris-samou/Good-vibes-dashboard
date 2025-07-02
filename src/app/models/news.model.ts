@@ -5,7 +5,7 @@ export interface NewsArticle {
   source: {
     name: string;
   };
-  urlToImage: string | null;
+  image: string | null;
 }
 
 export interface NewsApiResponse {

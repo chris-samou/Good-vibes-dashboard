@@ -8,26 +8,22 @@ export default async (req: Request) => {
   const apiKey = process.env.GNEWS_API_KEY;
   if (!apiKey) return new Response('API key not configured', { status: 500 });
 
-  const positiveKeywords = [
-    'breakthrough',
-    'uplifting',
-    'inspiring',
-    'charity',
-    'successful',
-    'innovative',
-    'community',
-    'celebrates',
-    'achieves',
-    'volunteer',
-    'discovery',
-    'rescued',
-    'donates',
-    'launches',
-    'art',
-    'music festival',
-  ].join(' OR ');
+  const positiveKeywords = ['uplifting', 'successful', 'community'].join(
+    ' OR '
+  );
 
-  const query = `"${city}" AND (${positiveKeywords})`;
+  const negativeKeywords = [
+    'death',
+    'funeral',
+    'coffin',
+    'cemetery',
+    'crime',
+    'war',
+    'attack',
+    'disaster',
+    'scandal',
+  ].join(' OR ');
+  const query = `"${city}" AND (${positiveKeywords}) NOT (${negativeKeywords})`;
 
   const gnewsUrl = `https://gnews.io/api/v4/search?q=${encodeURIComponent(
     query
@@ -42,7 +38,7 @@ export default async (req: Request) => {
     const badWordsRegex =
       /death|funeral|coffin|cemetery|crime|war|attack|disaster|scandal/i;
     data.articles = (data.articles || []).filter(
-      (article) => !badWordsRegex.test(article.title)
+      (article) => !badWordsRegex.test(article.title) && article.image
     );
 
     return new Response(JSON.stringify(data), {
