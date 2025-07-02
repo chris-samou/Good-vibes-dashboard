@@ -179,29 +179,49 @@
             <div class="flex flex-col h-full justify-between">
               <div>
                 <div
-                  class="md:aspect-[calc(4*3+1)/3] rounded-lg overflow-hidden mb-4 shadow-lg"
+                  class="md:aspect-[calc(4*3+1)/3] rounded-lg overflow-hidden mb-4 shadow-lg relative cursor-pointer"
+                  *ngIf="!videoLoaded"
+                  (click)="videoLoaded = true"
                 >
-                  <iframe
-                    [src]="('https://www.youtube.com/embed/' + s.youtubeId) | safeUrl"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    class="w-full h-full"
+                  <img
+                    [src]="'https://i.ytimg.com/vi/' + s.youtubeId + '/hqdefault.jpg'"
+                    alt="Play video"
+                    class="w-full h-full object-cover"
                     loading="lazy"
-                  ></iframe>
+                  />
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50"
+                  >
+                    <button
+                      class="text-white text-xl bg-brand-primary px-4 py-2 rounded"
+                    >
+                      ▶ Play
+                    </button>
+                  </div>
                 </div>
-                <p class="text-2xl font-bold leading-tight">"{{ s.title }}"</p>
-                <p class="text-lg">
-                  by <span class="font-semibold">{{ s.artist }}</span>
-                </p>
+
+                <iframe
+                  *ngIf="videoLoaded"
+                  [src]="('https://www.youtube.com/embed/' + s.youtubeId) | safeUrl"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  class="w-full h-full"
+                  loading="lazy"
+                ></iframe>
               </div>
-              <button
-                (click)="loadSong(true)"
-                class="mt-6 w-full bg-gradient-to-r from-brand-secondary to-brand-accent text-white font-bold p-3 rounded-lg hover:from-brand-accent hover:to-brand-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/20 focus:ring-white transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              >
-                Give Me Another!
-              </button>
+
+              <p class="text-2xl font-bold leading-tight">"{{ s.title }}"</p>
+              <p class="text-lg">
+                by <span class="font-semibold">{{ s.artist }}</span>
+              </p>
             </div>
+            <button
+              (click)="loadSong(true)"
+              class="mt-6 w-full bg-gradient-to-r from-brand-secondary to-brand-accent text-white font-bold p-3 rounded-lg hover:from-brand-accent hover:to-brand-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/20 focus:ring-white transition-all duration-300 transform hover:scale-105 cursor-pointer"
+            >
+              Give Me Another!
+            </button>
             }
           </app-info-card>
         </div>

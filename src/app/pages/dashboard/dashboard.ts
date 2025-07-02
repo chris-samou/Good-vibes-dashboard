@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private localDataService = inject(LocalDataService);
   private photoService = inject(PhotoService);
 
-  // Signals for all our data
   weather = signal<WeatherData | null>(null);
   news = signal<NewsArticle[] | null>(null);
   song = signal<Song | null>(null);
@@ -62,6 +61,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newsError = signal(false);
   isNewsReady = signal(false);
 
+  videoLoaded = false;
   currentCity: string = '';
 
   private dataLoadCounter = 0;
@@ -147,7 +147,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       });
     };
+
+    this.videoLoaded = false;
     this.songLoading.set(true);
+
     if (withAnimation) {
       gsap.to('.music-card', {
         duration: 0.3,
