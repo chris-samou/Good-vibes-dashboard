@@ -6,4 +6,5 @@ export const environment = {
   unsplash: {
     apiKey: '5JiJy98yJbRKpIeFh846Jg8WgsWnP-xYqhRgsDHWcXQ',
   },
+  GNEWS_API_KEY: '92065e63e8ec87216105237a8d4490f1',
 };

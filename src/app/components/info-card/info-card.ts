@@ -14,7 +14,6 @@ import { gsap } from 'gsap';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './info-card.html',
-  styleUrls: ['./info-card.css'],
 })
 export class InfoCardComponent implements AfterViewInit {
   // @Input() allows parent components to pass data into this component.

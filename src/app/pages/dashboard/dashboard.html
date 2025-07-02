@@ -138,10 +138,10 @@
                 <div class="w-4/5">
                   <div class="flex flex-col h-full">
                     <img
-                      [src]="article.urlToImage"
-                      onError="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600'"
+                      [src]="article.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600'"
                       alt="News image"
                       class="w-full h-40 object-cover rounded-lg mb-4"
+                      onError="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600'"
                     />
                     <a
                       [href]="article.url"

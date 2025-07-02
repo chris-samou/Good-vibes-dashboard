@@ -19,6 +19,7 @@
     "@angular/service-worker": "^20.0.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node-fetch": "^2.6.12",
+    "dotenv": "^17.0.1",
     "gsap": "^3.13.0",
     "node-fetch": "^2.7.0",
     "postcss": "^8.5.6",

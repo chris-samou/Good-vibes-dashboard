@@ -1,3 +1,30 @@
+// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
+
+// @Component({
+//   selector: 'app-location-selector',
+//   standalone: true,
+//   imports: [FormsModule],
+//   templateUrl: './location-selector.html',
+// })
+// export class LocationSelectorComponent implements OnInit {
+//   @Input() initialCity: string = '';
+
+//   city: string = '';
+
+//   @Output() locationSelected = new EventEmitter<string>();
+
+//   ngOnInit(): void {
+//     this.city = this.initialCity;
+//   }
+
+//   search(): void {
+//     if (this.city.trim()) {
+//       this.locationSelected.emit(this.city.trim());
+//     }
+//   }
+// }
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -8,9 +35,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './location-selector.html',
 })
 export class LocationSelectorComponent implements OnInit {
-  @Input() initialCity: string = '';
-
-  city: string = '';
+  @Input() initialCity = '';
+  city = '';
 
   @Output() locationSelected = new EventEmitter<string>();
 
@@ -19,8 +45,9 @@ export class LocationSelectorComponent implements OnInit {
   }
 
   search(): void {
-    if (this.city.trim()) {
-      this.locationSelected.emit(this.city.trim());
+    const trimmedCity = this.city.trim();
+    if (trimmedCity) {
+      this.locationSelected.emit(trimmedCity);
     }
   }
 }

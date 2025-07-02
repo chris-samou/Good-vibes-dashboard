@@ -1,19 +1,24 @@
 <div class="max-w-2xl mx-auto">
   <form
     (ngSubmit)="search()"
-    class="relative flex w-full p-2 bg-black/10 backdrop-blur-sm rounded-full shadow-lg"
+    class="relative flex items-center w-full p-2 bg-black/20 backdrop-blur-md rounded-full shadow-lg"
+    aria-label="Location search form"
   >
     <input
       type="text"
       [(ngModel)]="city"
       name="city"
       placeholder="Find your vibe... e.g., New York, Tokyo, Paris"
-      class="flex-grow p-3 pl-5 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+      class="flex-grow p-2.5 pl-5 w-full bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary rounded-l-full"
       required
+      aria-required="true"
+      aria-label="City name"
+      autocomplete="off"
     />
     <button
       type="submit"
-      class="bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-bold p-3 px-8 rounded-full hover:from-brand-secondary hover:to-brand-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/20 focus:ring-white transition-all duration-300 transform hover:scale-105 cursor-pointer"
+      class="bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold p-3 px-8 rounded-r-full hover:from-brand-secondary hover:to-brand-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/20 focus:ring-white transition-transform duration-300 hover:scale-105"
+      aria-label="Search city"
     >
       Search
     </button>
